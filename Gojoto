@@ -1,0 +1,1541 @@
+local TextLabelText = "THE STRONGEST SORCERER" --ult name editor
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Left = false
+local Right = false
+local Top = false
+local Down = false
+
+
+
+
+local Color1 = Color3.fromRGB(85, 255, 255)
+local player = game.Players.LocalPlayer
+local magicHealth = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui"):WaitForChild("MagicHealth")
+local healthBar = magicHealth:WaitForChild("Health")
+local textLabel = magicHealth:WaitForChild("TextLabel")
+
+healthBar.Bar.ImageColor3 = Color1
+
+textLabel.Text = TextLabelText
+
+if Left then
+    magicHealth.Position = UDim2.new(0, 0, magicHealth.Position.Y.Scale, magicHealth.Position.Y.Offset)
+elseif Right then
+    magicHealth.Position = UDim2.new(1, -magicHealth.Size.X.Offset, magicHealth.Position.Y.Scale, magicHealth.Position.Y.Offset)
+elseif Top then
+    magicHealth.Position = UDim2.new(magicHealth.Position.X.Scale, magicHealth.Position.X.Offset, 0, 0)
+elseif Down then
+    magicHealth.Position = UDim2.new(magicHealth.Position.X.Scale, magicHealth.Position.X.Offset, 1, -magicHealth.Size.Y.Offset)
+end
+
+local player = game.Players.LocalPlayer
+local magicHealthTextLabel = player:WaitForChild("PlayerGui")
+                                 :WaitForChild("ScreenGui")
+                                 :WaitForChild("MagicHealth")
+                                 :WaitForChild("TextLabel")
+
+local offset = UDim2.new(0, 0, -0.78, 0) 
+
+magicHealthTextLabel.Position = magicHealthTextLabel.Position + offset
+local player = game.Players.LocalPlayer
+local screenGui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+
+magicHealth.BackgroundTransparency = 0.5
+
+magicHealth.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+magicHealth.BorderColor3 = Color3.fromRGB(0, 0, 0)
+
+magicHealth.BorderSizePixel = 2
+
+local player = game.Players.LocalPlayer
+local screenGui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+local health = magicHealth:WaitForChild("Health")
+local glow = health:WaitForChild("Glow")
+
+glow.ImageTransparency = 1
+
+local backgroundTransparency = 0
+local backgroundColor = Color3.fromRGB(6, 57, 225) --real ult color lol
+
+local player = game.Players.LocalPlayer
+local screenGui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+local healthBar = magicHealth:WaitForChild("Health"):WaitForChild("Bar"):WaitForChild("Bar")
+
+healthBar.BackgroundTransparency = backgroundTransparency
+healthBar.BackgroundColor3 = backgroundColor
+
+local player = game.Players.LocalPlayer
+local screenGui = player:WaitForChild("PlayerGui"):WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+local health = magicHealth:WaitForChild("Health")
+local bar = health:WaitForChild("Bar")
+local bar2 = bar:WaitForChild("Bar")
+
+
+bar2.ImageTransparency = 1
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = playerGui:WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+local textLabel = magicHealth:WaitForChild("TextLabel")
+
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = playerGui:WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+local textLabel = magicHealth:WaitForChild("TextLabel"):WaitForChild("TextLabel")
+textLabel.Font = Enum.Font.RobotoMono
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = playerGui:WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+local textLabel = magicHealth:WaitForChild("TextLabel")
+
+textLabel.Font = Enum.Font.RobotoMono
+textLabel.TextSize = 30
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+local screenGui = playerGui:WaitForChild("ScreenGui")
+local magicHealth = screenGui:WaitForChild("MagicHealth")
+local textLabel = magicHealth:WaitForChild("TextLabel"):WaitForChild("TextLabel")
+
+textLabel.Font = Enum.Font.RobotoMono
+textLabel.TextSize = 30
+
+-- Services
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+
+-- Local Player
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Color tweening function
+local function tweenColor(imageLabel, startColor, endColor, duration)
+    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true)
+    local tween = TweenService:Create(imageLabel, tweenInfo, {ImageColor3 = endColor})
+    tween:Play()
+end
+
+-- GUI and color adjustment function
+local function updateBarColor()
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+    if not screenGui then return end
+
+    local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+    if not magicHealthFrame then return end
+
+    local healthFrame = magicHealthFrame:FindFirstChild("Health")
+    if not healthFrame then return end
+
+    local barFrame = healthFrame:FindFirstChild("Bar")
+    if not barFrame then return end
+
+    -- Remove the outline frame if it exists
+    local existingOutline = barFrame:FindFirstChild("OutlineFrame")
+    if existingOutline then
+        existingOutline:Destroy()
+    end
+
+    -- Create the bar inside the frame
+    local bar = barFrame:FindFirstChild("Bar")
+    if bar and bar:IsA("ImageLabel") then
+        -- Set initial color to white
+        bar.ImageColor3 = Color3.fromRGB(6, 57, 225)  -- Blue
+        -- Smooth transition from blue to blue
+        tweenColor(bar, Color3.fromRGB(6, 57, 225), Color3.fromRGB(0, 0, 255), 2)
+    end
+end
+
+-- Player setup
+local function onCharacterAdded()
+    updateBarColor()
+end
+
+player.CharacterAdded:Connect(onCharacterAdded)
+if player.Character then
+    onCharacterAdded()
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "UIContainer"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local creditText = Instance.new("TextLabel")
+creditText.Size = UDim2.new(1, 0, 0, 20) -- size
+creditText.Position = UDim2.new(0, 0, 0, 0) -- Top
+creditText.BackgroundTransparency = 1 -- bg
+creditText.Text = "GOJO SIX EYES BY NOOBIESCRIPTER ON DISCORD"
+creditText.TextColor3 = Color3.new(1, 1, 1) --clr
+creditText.Font = Enum.Font.SourceSans
+creditText.TextScaled = true -- scale
+creditText.TextTransparency = 0.9 --opaque
+creditText.Parent = screenGui
+
+game.StarterGui:SetCore("SendNotification", {
+        Title = "GOJO SIX EYES BY NOOBIESCRIPTER";
+        Text = " Join Our Discord Server! https://discord.gg/gZ4fTSSaCg";
+        Duration = 5;
+        Icon = "rbxassetid://1728569369781000"; -- image id if you don't wanna add it leave it like that
+})
+
+local tool = Instance.new("Tool")
+tool.Name = "Happy"
+
+local handle = Instance.new("Part")
+handle.Name = "Handle"
+handle.Transparency = 1
+handle.CanCollide = false
+handle.Parent = tool
+
+local soundId = "rbxassetid://15956555583" -- Place your sound ID here
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = tool
+
+local animId = "rbxassetid://16021093085 " -- Change this to your animation asset ID
+
+local function findClosestPlayer()
+    local localPlayer = game.Players.LocalPlayer
+    local character = localPlayer.Character
+    if not character then return nil end
+
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local closestPlayer = nil
+    local shortestDistance = math.huge
+
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local targetRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if targetRoot then
+                local distance = (rootPart.Position - targetRoot.Position).Magnitude
+                if distance < shortestDistance then
+                    shortestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+local function onEquipped()
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        -- Play the animation
+        local animation = Instance.new("Animation")
+        animation.AnimationId = animId
+        local animTrack = humanoid:LoadAnimation(animation)
+        animTrack:Play()
+
+        -- Find the nearest player
+        local closestPlayer = findClosestPlayer()
+        if closestPlayer and closestPlayer.Character then
+            local targetRoot = closestPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if targetRoot then
+                local backwardDirection = -targetRoot.CFrame.LookVector
+                local newPosition = targetRoot.Position + backwardDirection * 5 -- 5 studs behind the player
+                rootPart.CFrame = CFrame.new(newPosition)
+
+                -- Play the sound when the teleport happens
+                sound:Play()
+            end
+        end
+    end
+end
+
+-- Connect the equipped event to teleport
+tool.Equipped:Connect(onEquipped)
+
+-- Handle sound stopping when unequipped
+tool.Unequipped:Connect(function()
+    sound:Stop()
+end)
+
+-- Put the tool into the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Walk"
+
+local handle = Instance.new("Part")
+handle.Name = "Handle"
+handle.Transparency = 1
+handle.CanCollide = false
+handle.Parent = tool
+
+local soundId = "rbxassetid://15956555583" -- Place your sound ID here
+local sound = Instance.new("Sound")
+sound.SoundId = soundId
+sound.Parent = tool
+
+local animId = "rbxassetid://15962326593 " -- Change this to your animation asset ID
+
+local function findClosestPlayer()
+    local localPlayer = game.Players.LocalPlayer
+    local character = localPlayer.Character
+    if not character then return nil end
+
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+    local closestPlayer = nil
+    local shortestDistance = math.huge
+
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player ~= localPlayer and player.Character then
+            local targetRoot = player.Character:FindFirstChild("HumanoidRootPart")
+            if targetRoot then
+                local distance = (rootPart.Position - targetRoot.Position).Magnitude
+                if distance < shortestDistance then
+                    shortestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+local function onEquipped()
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+
+        -- Play the animation
+        local animation = Instance.new("Animation")
+        animation.AnimationId = animId
+        local animTrack = humanoid:LoadAnimation(animation)
+        animTrack:Play()
+
+        -- Find the nearest player
+        local closestPlayer = findClosestPlayer()
+        if closestPlayer and closestPlayer.Character then
+            local targetRoot = closestPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if targetRoot then
+                local backwardDirection = -targetRoot.CFrame.LookVector
+                local newPosition = targetRoot.Position + backwardDirection * 5 -- 5 studs behind the player
+                rootPart.CFrame = CFrame.new(newPosition)
+
+                -- Play the sound when the teleport happens
+                sound:Play()
+            end
+        end
+    end
+end
+
+-- Connect the equipped event to teleport
+tool.Equipped:Connect(onEquipped)
+
+-- Handle sound stopping when unequipped
+tool.Unequipped:Connect(function()
+    sound:Stop()
+end)
+
+-- Put the tool into the player's backpack
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local deathPosition = nil
+local animationId = "rbxassetid://15507138928"
+
+local function stopAllAnimations(humanoid)
+    local animationTracks = humanoid:GetPlayingAnimationTracks()
+    for _, track in ipairs(animationTracks) do
+        track:Stop()
+    end
+end
+
+local function onCharacterAdded(character)
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    if deathPosition then
+        character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(deathPosition)
+        stopAllAnimations(humanoid)
+        task.wait()
+        local animation = Instance.new("Animation")
+        animation.AnimationId = animationId
+        local animationTrack = humanoid:LoadAnimation(animation)
+        animationTrack:Play()
+
+        local args = {
+            [1] = "I FINALLY GRASPED IT ON THE VERGE OF DEATH! ",
+            [2] = "All"
+        }
+
+        game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
+
+        wait(2)
+
+        local args = {
+            [1] = "REVERSE CURSED TECHNIQUE! ",
+            [2] = "All"
+        }
+
+        game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(unpack(args))
+
+        task.wait(3)
+        animationTrack:Stop()
+        deathPosition = nil  
+    end
+
+    humanoid.HealthChanged:Connect(function(health)
+        if health <= 0 then
+            deathPosition = character:WaitForChild("HumanoidRootPart").Position
+        end
+    end)
+end
+
+player.CharacterAdded:Connect(onCharacterAdded)
+
+if player.Character then
+    onCharacterAdded(player.Character)
+end
+
+-- Services
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+
+-- Local Player
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- GUI and color adjustment function
+local function updateBarColor()
+    -- Find the ScreenGui on the screen
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+    if not screenGui then return end
+
+    -- Find the MagicHealth Frame
+    local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+    if not magicHealthFrame then return end
+
+    -- Find the Health Frame
+    local healthFrame = magicHealthFrame:FindFirstChild("Health")
+    if not healthFrame then return end
+
+    -- Find the Bar Frame
+    local barFrame = healthFrame:FindFirstChild("Bar")
+    if not barFrame then return end
+
+    -- Find the ImageLabel with ImageColor3 property inside the Bar Frame
+    local imageLabel = barFrame:FindFirstChild("Bar")
+    if not imageLabel or not imageLabel:IsA("ImageLabel") then return end
+
+    -- Set the color to blue
+    imageLabel.ImageColor3 = Color3.fromRGB(6, 57, 225) -- Blue
+end
+
+-- Check the GUI again when the character resets
+local function onCharacterAdded(character)
+    -- Update the GUI
+    updateBarColor()
+end
+
+-- Check the local player's character
+local function onPlayerAdded()
+    local character = player.Character or player.CharacterAdded:Wait()
+    onCharacterAdded(character)
+
+    -- Check again when the character changes
+    player.CharacterAdded:Connect(onCharacterAdded)
+end
+
+-- Check when the player is added
+Players.PlayerAdded:Connect(onPlayerAdded)
+if player then
+    onPlayerAdded()
+end
+
+-- if you don't wanna change it keep it like that all of them
+local m1 = 10469493270
+local m2 = 10469630950
+local m3 = 10469639222
+local m4 = 16552234590
+
+local MovesetName1 = "Red Output"
+local MovesetName2 = "Beatdown"
+local MovesetName3 = "Swift Push"
+local MovesetName4 = "Reversal Red"
+
+local MovesetAnim1 = 13073745835
+local MovesetAnim2 = 13560306510
+local MovesetAnim3 = 16552234590
+local MovesetAnim4 = 15020965094
+
+local UltBarName = "THE STRONGEST SORCERER"
+local UltAnim = 18435303746
+
+local WallCombo = 18903642853
+local Block = 15020965094
+local DashForward = 17838006839
+local DashLeft = 10480796021
+local DashRight = 10480793962
+local DashBack = 10491993682
+
+local UltMovesetName1 = "Simple Domain"
+local UltMovesetName2 = "Maximum Output: Red"
+local UltMovesetName3 = "Imaginary: Technique Hollow Purple"
+local UltMovesetName4 = "Domain Expansion: Infinite void"
+
+local UltMovesetAnim1 = 11343318134
+local UltMovesetAnim2 = 11365563255
+local UltMovesetAnim3 = 12983333733
+local UltMovesetAnim4 = 13927612951
+
+-- don't change here unless you know
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10469493270" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. m1
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10469630950" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. m2
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10469639222" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. m3
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10469643643" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. m4
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+local baseButton = hotbarFrame:FindFirstChild("1").Base
+local ToolName = baseButton.ToolName
+
+ToolName.Text = MovesetName1
+
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+local baseButton = hotbarFrame:FindFirstChild("2").Base
+local ToolName = baseButton.ToolName
+
+ToolName.Text = MovesetName2
+
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+local baseButton = hotbarFrame:FindFirstChild("3").Base
+local ToolName = baseButton.ToolName
+
+ToolName.Text = MovesetName3
+
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+local baseButton = hotbarFrame:FindFirstChild("4").Base
+local ToolName = baseButton.ToolName
+
+ToolName.Text = MovesetName4
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10468665991" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+    local boom1 = game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(60) -- Emit 20 particles
+        end
+    end
+local leap1 = game.ReplicatedStorage.Resources.KJEffects["LeapParticles"].Leap:Clone()
+leap1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(leap1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local collateral1 = game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Attachment:Clone()
+collateral1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral2 = game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Emit:Clone()
+collateral2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral2:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral3 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningparty:Clone()
+collateral3.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral3:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral4 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke:Clone()
+collateral4.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral4:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral5 = game.ReplicatedStorage.Resources.KJEffects["spinbeam"].beam2:Clone()
+collateral5.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral5:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral6 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapct"].HitTwo:Clone()
+collateral6.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral6:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral7 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest"].HitTwo:Clone()
+collateral7.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral7:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral8 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest2"].HitTwo:Clone()
+collateral8.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral8:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local fine3 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2:Clone()
+fine3.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(fine3:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["ImpactEffect2"].Attachment:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(3) -- Emit 20 particles
+        end
+    end
+
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(20) -- Emit 20 particles
+        end
+    end
+
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(3) -- Emit 20 particles
+        end
+    end
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. MovesetAnim1
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10466974800" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+    -- Bright blue color sequence
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 191, 255)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(30, 144, 255)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(135, 206, 250))   -- Light sky blue
+}
+
+local fx1 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx2 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.a:Clone()
+fx2.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx2:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx3 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmFX:Clone()
+fx3.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx3:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(1) -- Emit 1 particle
+    end
+end
+
+fx3:Destroy()
+
+local fx4 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].EyeEmit:Clone()
+fx4.Parent = game.Players.LocalPlayer.Character["Head"]
+for _, child in ipairs(fx4:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx5 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.Attachment:Clone()
+fx5.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx5:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx6 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.a:Clone()
+fx6.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx6:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx7 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmFX:Clone()
+fx7.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx7:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(1) -- Emit 1 particle
+    end
+end
+
+fx7:Destroy()
+
+-- Function to create a beam with custom start and end offsets
+local function createBeam(startOffset, endOffset)
+    -- Create start part for the beam
+    local startPart = Instance.new("Part", workspace)
+    startPart.Anchored = true
+    startPart.Transparency = 1
+    startPart.Size = Vector3.new(1, 1, 1)
+    startPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(startOffset.X, startOffset.Y, startOffset.Z)
+
+    -- Create end part for the beam
+    local endPart = Instance.new("Part", workspace)
+    endPart.Anchored = true
+    endPart.Transparency = 1
+    endPart.Size = Vector3.new(1, 1, 1)
+    endPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(endOffset.X, endOffset.Y, endOffset.Z)
+
+    -- Create the beam
+    local beam = Instance.new("Beam", startPart)
+    beam.FaceCamera = true
+    beam.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 191, 255)),   -- Deep sky blue
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(135, 206, 250))  -- Light sky blue
+    } -- Bright blue beam color
+    beam.Width0 = 2 -- Width at start
+    beam.Width1 = 2 -- Width at end
+    beam.Attachment0 = Instance.new("Attachment", startPart)
+    beam.Attachment1 = Instance.new("Attachment", endPart)
+
+    -- Set beam transparency over time
+    beam.Transparency = NumberSequence.new{
+        NumberSequenceKeypoint.new(0, 1), -- Fully transparent at start
+        NumberSequenceKeypoint.new(0.1, 0.5), -- Semi-transparent quickly
+        NumberSequenceKeypoint.new(1, 0) -- Fully opaque at the middle
+    }
+
+    -- Fade out effect
+    delay(0.75, function()
+        for i = 1, 10 do
+            beam.Transparency = NumberSequence.new(i / 10)
+            task.wait(0.1)
+        end
+        startPart:Destroy()
+        endPart:Destroy()
+    end)
+end
+
+-- Create 3 beams with different start and end positions
+createBeam(Vector3.new(0, 2.45, 3), Vector3.new(0, 2.45, -39.5)) -- Center beam
+createBeam(Vector3.new(-2, 2.45, 3), Vector3.new(-2, 2.45, -39.5)) -- Left beam
+createBeam(Vector3.new(2, 2.45, 3), Vector3.new(2, 2.45, -39.5)) -- Right beam
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. MovesetAnim2
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(2.3) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10471336737" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+    local final2 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Origin:Clone()
+final2.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+    for _, child in ipairs(final2:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local final3 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Attachment:Clone()
+final3.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+    for _, child in ipairs(final3:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local final4 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Attachment:Clone()
+final4.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+    for _, child in ipairs(final4:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local final5 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Attachment:Clone()
+final5.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+    for _, child in ipairs(final5:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local final6 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Attachment:Clone()
+final6.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+    for _, child in ipairs(final6:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. MovesetAnim3
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://12510170988" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+    local boom1 = game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(60) -- Emit 20 particles
+        end
+    end
+local leap1 = game.ReplicatedStorage.Resources.KJEffects["LeapParticles"].Leap:Clone()
+leap1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(leap1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local collateral1 = game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Attachment:Clone()
+collateral1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral2 = game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Emit:Clone()
+collateral2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral2:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral3 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningparty:Clone()
+collateral3.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral3:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral4 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke:Clone()
+collateral4.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral4:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral5 = game.ReplicatedStorage.Resources.KJEffects["spinbeam"].beam2:Clone()
+collateral5.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral5:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral6 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapct"].HitTwo:Clone()
+collateral6.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral6:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral7 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest"].HitTwo:Clone()
+collateral7.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral7:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local collateral8 = game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest2"].HitTwo:Clone()
+collateral8.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    for _, child in ipairs(collateral8:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(2) -- Emit 20 particles
+        end
+    end
+local fine3 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2:Clone()
+fine3.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(fine3:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(1) -- Emit 20 particles
+        end
+    end
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["ImpactEffect2"].Attachment:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(3) -- Emit 20 particles
+        end
+    end
+
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(20) -- Emit 20 particles
+        end
+    end
+
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+    for _, child in ipairs(boom1:GetChildren()) do
+        if child:IsA("ParticleEmitter") then -- Check if the child is a ParticleEmitter
+            child:Emit(3) -- Emit 20 particles
+        end
+    end
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. MovesetAnim4
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local function findGuiAndSetText()
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+    if screenGui then
+        local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+        if magicHealthFrame then
+            local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+            if textLabel then
+                textLabel.Text = UltBarName
+            end
+        end
+    end
+end
+
+playerGui.DescendantAdded:Connect(function(descendant)
+    if descendant:IsDescendantOf(playerGui:FindFirstChild("ScreenGui")) then
+        findGuiAndSetText()
+    end
+end)
+
+findGuiAndSetText()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://12447707844" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+    local localPlayer = game:GetService("Players").LocalPlayer
+local localCharacter = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+
+local function triggerParticleEffect()
+    for _, part in pairs(localCharacter:GetChildren()) do
+        if part:IsA("BasePart") then
+            local attach = Instance.new("Attachment")
+            local particles = Instance.new("ParticleEmitter")
+
+            attach.Name = "TOKYOISSOKIDI"
+            attach.Parent = part
+
+            particles.Brightness = 5
+            particles.Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.fromRGB(135, 206, 235)), -- Sky blue color start
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(135, 206, 250)) -- Light blue end
+            })
+            particles.Drag = 3
+            particles.FlipbookLayout = Enum.ParticleFlipbookLayout.Grid4x4
+            particles.FlipbookMode = Enum.ParticleFlipbookMode.OneShot
+            particles.Lifetime = NumberRange.new(0.5)
+            particles.LightEmission = -1
+            particles.LockedToPart = true
+            particles.Rate = 2.5
+            particles.Size = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 2),
+                NumberSequenceKeypoint.new(1, 2)
+            })
+            particles.Speed = NumberRange.new(0)
+            particles.Texture = "http://www.roblox.com/asset/?id=14904853757"
+            particles.Transparency = NumberSequence.new({
+                NumberSequenceKeypoint.new(0, 1),
+                NumberSequenceKeypoint.new(0.2, 0.49),
+                NumberSequenceKeypoint.new(0.5, 0.51),
+                NumberSequenceKeypoint.new(0.8, 0.49),
+                NumberSequenceKeypoint.new(1, 1)
+            })
+            particles.ZOffset = -1
+            particles.Parent = attach
+        end
+    end
+    
+    local function stringToCFrame(str)
+    local components = {str:match("([^,]+),([^,]+),([^,]+),([^,]+),([^,]+),([^,]+),([^,]+),([^,]+),([^,]+),([^,]+),([^,]+),([^,]+)")}
+    for i = 1, #components do
+        components[i] = tonumber(components[i])
+    end
+    return CFrame.new(unpack(components))
+end
+ 
+local blueColor = ColorSequence.new(Color3.fromRGB(0, 0, 255)) -- Blue color
+
+local red4 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].EyeEmit:Clone()
+red4.Parent = game.Players.LocalPlayer.Character["Head"]
+for _, child in ipairs(red4:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = blueColor -- Change particle color to blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+end
+
+triggerParticleEffect()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. UltAnim
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://15955393872" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. WallCombo
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10470389827" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. Block
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10479335397" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. DashForward
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10480793962" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. DashRight
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10480796021" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. DashLeft
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://10491993682" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. DashBack
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+local character = player.Character or player.CharacterAdded:Wait() -- Get character
+
+local toolNamesToReplace = {
+    ["1"] = {original = "Death Counter", new = UltMovesetName1},
+    ["2"] = {original = "Table Flip", new = UltMovesetName2},
+    ["3"] = {original = "Serious Punch", new = UltMovesetName3},
+    ["4"] = {original = "Omni Directional Punch", new = UltMovesetName4}
+}
+
+local function checkAndReplaceToolName()
+    while character.Humanoid.Health > 0 do
+        local hotbar = playerGui:FindFirstChild("Hotbar")
+        if hotbar then
+            local backpack = hotbar:FindFirstChild("Backpack")
+            if backpack then
+                local hotbarFrame = backpack:FindFirstChild("Hotbar")
+                if hotbarFrame then
+                    for buttonName, toolData in pairs(toolNamesToReplace) do
+                        local baseButton = hotbarFrame:FindFirstChild(buttonName) and hotbarFrame[buttonName]:FindFirstChild("Base")
+                        if baseButton then
+                            local toolName = baseButton:FindFirstChild("ToolName")
+                            if toolName and toolName.Text == toolData.original then
+                                toolName.Text = toolData.new
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        wait()
+    end
+end
+
+checkAndReplaceToolName()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://11343318134" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. UltMovesetAnim1
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://11365563255" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. UltMovesetAnim2
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://12983333733" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. UltMovesetAnim3
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://13927612951" then
+
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+    animTrack:Stop()
+end
+
+local AnimAnim = Instance.new("Animation")
+AnimAnim.AnimationId = "rbxassetid://" .. UltMovesetAnim4
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+-- this is the settings change if you want to change it
+Anim:Play() -- not this one
+Anim:AdjustSpeed(1) -- speed
+Anim.TimePosition = 0 -- skip through the middle of the animation like video if you want normal leave it like that
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
